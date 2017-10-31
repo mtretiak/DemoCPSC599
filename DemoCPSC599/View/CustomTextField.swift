@@ -10,7 +10,7 @@ import UIKit
 
 
 @IBDesignable
-class CustomTextField: UITextField {
+class CustomTextField: UITextField, Shakeable {
     
     private var paddingInset: UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: self.leftPadding + 30 + 12, bottom: 0, right: 5)
@@ -73,35 +73,6 @@ class CustomTextField: UITextField {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class RoundedButton: UIButton {
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        layer.cornerRadius = frame.height / 2.0
-        layer.masksToBounds = true
-    }
-    
-    
-}
-
-
-
 
 
 

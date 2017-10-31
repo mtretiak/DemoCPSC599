@@ -84,11 +84,18 @@ final class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(_stackView)
-        view.addSubview(_signupBtn)
+        // To dismiss keyboard upon clicking away
+        let tabRec = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tabRec)
+        view.backgroundColor = StyleSheet.defaultTheme.contentBackgroundColor
+
+        setupUI()
+    }
+    
+    private func setupUI() {
+        view.addSubviews([_stackView, _signupBtn])
         
         NSLayoutConstraint.activate([
-            
             _stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             _stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             _stackView.widthAnchor.constraint(equalToConstant: 350),
@@ -98,13 +105,7 @@ final class SignUpViewController: UIViewController {
             _signupBtn.rightAnchor.constraint(equalTo: _stackView.rightAnchor),
             _signupBtn.topAnchor.constraint(equalTo: _stackView.bottomAnchor, constant: 64),
             _signupBtn.heightAnchor.constraint(equalToConstant: 70),
-        
-            ])
-        
-        view.backgroundColor = StyleSheet.defaultTheme.contentBackgroundColor
-        
-        let tabRec = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tabRec)
+        ])
     }
     
     
@@ -112,22 +113,35 @@ final class SignUpViewController: UIViewController {
     
     @objc func signup() {
         
-        // u need to enable it on the firebase console
+        guard let username = _usernameTextField.text else {
+            _usernameTextField.shake()
+            return
+        }
+        guard let email = _emailTextField.text else {
+            _emailTextField.shake()
+            return
+        }
+        guard EmailValidator.isValid(email: email) else {
+            _emailTextField.shake()
+            return
+        }
+        guard let password = _passwordTextField.text  else {
+            _passwordTextField.shake()
+            return
+        }
+        guard password.count > 6 else {
+            _passwordTextField.shake()
+            return
+        }
         
-        // make sure they exist and they are not empty
-        
-        guard let username = _usernameTextField.text,
-            let email = _emailTextField.text,
-            let password = _passwordTextField.text else { return }
-        
-        guard username.count > 0 && password.count > 6 && isValidEmail(testStr: email) else { return }
-        
+        // FIREBAE CODE
         
         Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
             
             if error != nil {
                 print(error ?? "")
                 // show the user the error message
+                self.showAlert(error!)
                 return
             }
             guard let user = user else { return }
@@ -139,7 +153,8 @@ final class SignUpViewController: UIViewController {
             ref.updateChildValues(values, withCompletionBlock: { (err, ref) in
                 
                 if err != nil {
-                    print(err ?? "")
+                    print(err!)
+                    self.showAlert(err!)
                     return
                 }
                 // successfully saved to the databse
@@ -149,17 +164,8 @@ final class SignUpViewController: UIViewController {
         }
     }
     
-    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    private func isValidEmail(testStr:String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: testStr)
-    }
-    
-    
-    
+ 
 }

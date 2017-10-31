@@ -22,4 +22,18 @@ extension UIView {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutFormatOptions(), metrics: nil, views: viewsDictionary))
     }
     
+    public func addSubviews(_ views: [UIView]) {
+        for view in views {
+            addSubview(view)
+        }
+    }
+    
+    func setAsCardView() {
+        layer.cornerRadius = 3.0
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowOpacity = 0.8
+    }
+    
 }

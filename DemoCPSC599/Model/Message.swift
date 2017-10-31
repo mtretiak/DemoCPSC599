@@ -41,8 +41,7 @@ extension Message {
     static var messages: [Message]  {
         get {
             return [
-            
-                /*
+               
                 Message(from: DemoUser.userOne.username, body: "Hello guys", date: Date(timeInterval: 10, since: Date())),
                 Message(from: DemoUser.userOne.username, body: "I was wondering if you will be avialable to meet this weekend", date: Date(timeInterval: 20, since: Date())),
                 
@@ -59,31 +58,7 @@ extension Message {
                 Message(from: DemoUser.userTwo.username, body: "Ok", date: Date(timeInterval: 350, since: Date())),
             
                 Message(from: DemoUser.userThree.username, body: "See u there", date: Date(timeInterval: 400, since: Date())),
-                
-                
-                
-                
-                
-                
-                Message(from: DemoUser.userOne.username, body: "Hello guys", date: Date(timeInterval: 500, since: Date()), isSender: true),
-                Message(from: DemoUser.userOne.username, body: "I was wondering if you will be avialable to meet this weekend", date: Date(timeInterval: 20, since: Date()), isSender: true),
-                
-                Message(from: DemoUser.userTwo.username, body: "I can, I am available all sunday", date: Date(timeInterval: 600, since: Date()), isSender: false),
-                
-                Message(from: DemoUser.userThree.username, body: "Me too.", date: Date(timeInterval: 700, since: Date()), isSender: false),
-                
-                Message(from: DemoUser.userOne.username, body: "Perfect then.", date: Date(timeInterval: 800, since: Date()), isSender: true),
-                
-                Message(from: DemoUser.userThree.username, body: "Where do u think we should meet. I know a good place on the computer science labs", date: Date(timeInterval: 900, since: Date()), isSender: false),
-                
-                Message(from: DemoUser.userOne.username, body: "Let's meet there then.", date: Date(timeInterval: 1000, since: Date()), isSender: true),
-                
-                Message(from: DemoUser.userTwo.username, body: "Ok", date: Date(timeInterval: 1100, since: Date()), isSender: false),
-                
-                Message(from: DemoUser.userThree.username, body: "See u there", date: Date(timeInterval: 1200, since: Date()), isSender: false),
-                
-                 Message(from: DemoUser.userThree.username, body: "Where do u think we should meet. I know a good place on the computer science labs", date: Date(timeInterval: 1300, since: Date()), isSender: false),
-                 */
+               
             ]
         }
     }

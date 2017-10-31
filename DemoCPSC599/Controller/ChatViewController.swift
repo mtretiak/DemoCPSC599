@@ -12,10 +12,7 @@ import FirebaseDatabase
 
 
 final class ChatViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    
-//    var messages: [Message] = {
-//        Message.messages.sorted(by: {$0.date.compare($1.date) == .orderedAscending})
-//    }()
+ 
     var messages: [Message] = []
     private let cellId = "CellId"
 
@@ -62,15 +59,12 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: messageInputContainerView)
         view.addConstraintsWithFormat(format: "V:[v0(48)]", views: messageInputContainerView)
         
-        
         bottomConstraint = messageInputContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         bottomConstraint?.isActive = true
         setupTextField()
         
-        
-        
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillShow, object: nil)
-         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillHide, object: nil)
         collectionView?.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 60, right: 0)
         navigationItem.rightBarButtonItem = logoutBtn
     }
@@ -85,7 +79,6 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         }, withCancel: nil)
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -95,10 +88,7 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         } else {
             fetchMessages()
         }
-        
-        guard messages.count > 0 else { return }
-        let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+        scrollToTheEnd()
     }
     
     @objc func showLoginScreen() {
@@ -185,11 +175,7 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
             UIView.animate(withDuration: 0, delay: 0, options: [.curveEaseInOut], animations: {
                 self.view.layoutIfNeeded()
             }, completion: { completed in
-                
-                if self.messages.count > 0 {
-                    let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
-                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-                }
+                self.scrollToTheEnd()
             })
         }
     }
@@ -201,27 +187,40 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         
         let message = Message(from: currentUser.email!, body: text, date: Date())
         
+        // FIREBAE CODE
+        
         Database.database().reference().child("messages")
             .childByAutoId()
             .setValue(message.json)
         
+        //clear the textField
         inputTextField.text = ""
     }
     
     @objc func logout() {
+        // FIREBASE CODE
         do {
             try Auth.auth().signOut()
-            let loginVC = UINavigationController(rootViewController: LoginViewController())
-            present(loginVC, animated: true, completion: nil)
+            showLoginScreen()
         } catch let logoutError {
             print(logoutError)
         }
+    }
+    
+    private func isUserLoggedIn() -> Bool {
+        return Auth.auth().currentUser != nil
     }
     
     private func appendMessage(_ message: Message) {
         messages.append(message)
         let indexPath = IndexPath(item: messages.count - 1, section: 0)
         collectionView?.insertItems(at: [indexPath])
+        collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    private func scrollToTheEnd() {
+        guard messages.count > 0 else { return }
+        let indexPath = IndexPath(item: messages.count - 1, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
