@@ -50,7 +50,7 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "CPSC 599 Group Chat"
+        navigationItem.title = "CPSC 599 - GROUP CHAT"
         collectionView?.backgroundColor = .white
         collectionView?.register(ChatLogMessageCell.self, forCellWithReuseIdentifier: cellId)
         

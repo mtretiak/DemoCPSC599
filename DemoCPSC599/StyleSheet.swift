@@ -18,21 +18,21 @@ struct StyleSheet {
         var mainColor: UIColor  {
             switch self {
             case .demo:
-                return UIColor.init(colorWithHexValue: 0xEF5552)
+                return UIColor.init(colorWithHexValue: 0x21AB80)
             }
         }
         
         var secondaryColor: UIColor {
             switch self {
             case .demo:
-                return UIColor.init(colorWithHexValue: 0xE4A18F)
+                return UIColor.init(colorWithHexValue: 0x57E6BA)
             }
         }
         
         var incomingMessageColor: UIColor  {
             switch self {
             case .demo:
-                return UIColor.init(colorWithHexValue: 0xEF5552)
+                return UIColor.init(colorWithHexValue: 0x3F9A7E)
             }
         }
         
