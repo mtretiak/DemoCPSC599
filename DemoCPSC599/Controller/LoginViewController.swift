@@ -147,6 +147,7 @@ final class LoginViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+ 
     
     @objc func openSignUpPage() {
         let vc = SignUpViewController()

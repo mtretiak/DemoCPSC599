@@ -50,16 +50,16 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "CPSC 599 - GROUP CHAT"
         collectionView?.backgroundColor = .white
         collectionView?.register(ChatLogMessageCell.self)
         inputTextField.delegate = self
         navigationItem.rightBarButtonItem = logoutBtn
         collectionView?.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 60, right: 0)
-
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillHide, object: nil)
+        
+        setupUI()
     }
     
     private func setupUI() {
@@ -83,6 +83,7 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
             fetchMessages()
         }
         scrollToTheEnd()
+        navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.displayName ?? "" )"
     }
     
     private func setupTextField() {
@@ -152,8 +153,7 @@ extension ChatViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatLogMessageCell
-        
+        let cell: ChatLogMessageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         let message = messages[indexPath.row]
         cell.message = message
         
