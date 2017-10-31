@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
+//import FirebaseAuth
+//import FirebaseDatabase
 
 final class SignUpViewController: UIViewController {
     
@@ -112,62 +112,64 @@ final class SignUpViewController: UIViewController {
     // MARK: - Event Handler methods
     
     @objc func signup() {
-        
-        guard let username = _usernameTextField.text else {
-            _usernameTextField.shake()
-            return
-        }
-        guard let email = _emailTextField.text else {
-            _emailTextField.shake()
-            return
-        }
-        guard EmailValidator.isValid(email: email) else {
-            _emailTextField.shake()
-            return
-        }
-        guard let password = _passwordTextField.text  else {
-            _passwordTextField.shake()
-            return
-        }
-        guard password.count > 6 else {
-            _passwordTextField.shake()
-            return
-        }
+//
+//        guard let username = _usernameTextField.text else {
+//            _usernameTextField.shake()
+//            return
+//        }
+//        guard let email = _emailTextField.text else {
+//            _emailTextField.shake()
+//            return
+//        }
+//        guard EmailValidator.isValid(email: email) else {
+//            _emailTextField.shake()
+//            return
+//        }
+//        guard let password = _passwordTextField.text  else {
+//            _passwordTextField.shake()
+//            return
+//        }
+//        guard password.count > 6 else {
+//            _passwordTextField.shake()
+//            return
+//        }
         
         // FIREBAE CODE
         
-        Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
-            
-            if error != nil {
-                print(error ?? "")
-                // show the user the error message
-                self.showAlert(error!)
-                return
-            }
-            guard let user = user else { return }
-
-            // successfully authenticaed user, save the user to the database
-            
-            let ref = Database.database().reference().child("users").child(user.uid)
-            let values = ["username": username, "email": email]
-            ref.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                
-                if err != nil {
-                    print(err!)
-                    self.showAlert(err!)
-                    return
-                }
-                // successfully saved to the databse
-                print("Saved user successfully to the databse")
-                self.dismiss(animated: true, completion: nil)
-                
-                user.createProfileChangeRequest().displayName = username
-                let changeRequest = user.createProfileChangeRequest()
-                changeRequest.displayName = username
-                changeRequest.commitChanges()
-               
-            })
-        }
+//        Auth.auth().createUser(withEmail: email, password: password) { (user: User?, error: Error?) in
+//
+//            if error != nil {
+//                print(error ?? "")
+//                // show the user the error message
+//                self.showAlert(error!)
+//                return
+//            }
+//            guard let user = user else { return }
+//
+//            // successfully authenticaed user, save the user to the database
+//
+//            let ref = Database.database().reference().child("users").child(user.uid)
+//            let values = ["username": username, "email": email]
+//            ref.updateChildValues(values, withCompletionBlock: { (err, ref) in
+//
+//                if err != nil {
+//                    print(err!)
+//                    self.showAlert(err!)
+//                    return
+//                }
+//                // successfully saved to the databse
+//                print("Saved user successfully to the databse")
+//                self.dismiss(animated: true, completion: nil)
+//
+//                user.createProfileChangeRequest().displayName = username
+//                let changeRequest = user.createProfileChangeRequest()
+//                changeRequest.displayName = username
+//                changeRequest.commitChanges()
+//
+//            })
+//        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func dismissKeyboard() {

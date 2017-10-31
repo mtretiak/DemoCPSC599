@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
+//import FirebaseAuth
+//import FirebaseDatabase
 
 
 final class ChatViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -76,14 +76,7 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if Auth.auth().currentUser == nil {
-            // no current user, show the login screen
-            perform(#selector(showLoginScreen), with: nil, afterDelay: 0.0)
-        } else {
-            fetchMessages()
-        }
-        scrollToTheEnd()
-        navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.displayName ?? "" )"
+        populateChatWithMessages()
     }
     
     private func setupTextField() {
@@ -159,7 +152,7 @@ extension ChatViewController {
         
         let estimatedCGSize = getSGSize(for: message)
         
-        if message.from == Auth.auth().currentUser?.email {
+        if isMessageFromCurrentUser(message) {
             //outgoing messages
             
             cell.textViewFrame = CGRect(x: view.frame.width - estimatedCGSize.width - 16 - 16 - 8, y: 0, width: estimatedCGSize.width + 16, height: estimatedCGSize.height + 20)
@@ -214,49 +207,61 @@ extension ChatViewController: UITextFieldDelegate {
 extension ChatViewController {
     
     private func fetchMessages() {
-        Database.database().reference().child("messages").observe(.childAdded, with: { (snapshot) in
-            // parse the messages
-            let values = snapshot.value as! [String: Any]
-            if let message = Message(dict: values) {
-                self.appendMessage(message)
-            }
-        }, withCancel: nil)
+//        Database.database().reference().child("messages").observe(.childAdded, with: { (snapshot) in
+//            // parse the messages
+//            let values = snapshot.value as! [String: Any]
+//            if let message = Message(dict: values) {
+//                self.appendMessage(message)
+//            }
+//        }, withCancel: nil)
     }
     
     @objc func addMessage() {
-        guard let text = inputTextField.text else { return }
-        guard text.count > 0 else { return }
-        guard let username = Auth.auth().currentUser?.displayName,
-            let email = Auth.auth().currentUser?.email else { return }
+//        guard let text = inputTextField.text else { return }
+//        guard text.count > 0 else { return }
+//        guard let username = Auth.auth().currentUser?.displayName,
+//            let email = Auth.auth().currentUser?.email else { return }
+//
+//        // create the message object
+//
+//        let message = Message(from: email, username: username, body: text, date: Date())
+//
+//        // Save it to firebase
+//
+//        Database.database().reference().child("messages")
+//            .childByAutoId()
+//            .setValue(message.json)
+//
+//        //clear the textField and hide the keyboard
+//        inputTextField.text = ""
+//        view.endEditing(true)
         
-        // create the message object
-        
-        let message = Message(from: email, username: username, body: text, date: Date())
-        
-        // Save it to firebase
-        
-        Database.database().reference().child("messages")
-            .childByAutoId()
-            .setValue(message.json)
-        
-        //clear the textField
-        inputTextField.text = ""
     }
     
     @objc func logout() {
         // FIREBASE CODE
-        do {
-            try Auth.auth().signOut()
-            showLoginScreen()
-        } catch let logoutError {
-            print(logoutError)
-        }
+//        do {
+//            try Auth.auth().signOut()
+//            showLoginScreen()
+//        } catch let logoutError {
+//            print(logoutError)
+//        }
     }
     
     
+    func populateChatWithMessages() {
+//        if Auth.auth().currentUser == nil {
+//            perform(#selector(showLoginScreen), with: nil, afterDelay: 0.0)
+//        } else {
+//            fetchMessages()
+//            navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.displayName ?? "" )"
+//        }
+        scrollToTheEnd()
+    }
     
-    private func isUserLoggedIn() -> Bool {
-        return Auth.auth().currentUser != nil
+    private func isMessageFromCurrentUser(_ message: Message) -> Bool {
+        //return message.from == Auth.auth().currentUser?.email ?? false
+        return false
     }
     
 }
