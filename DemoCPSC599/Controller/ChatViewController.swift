@@ -14,7 +14,6 @@ import FirebaseDatabase
 final class ChatViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
  
     var messages: [Message] = []
-    private let cellId = "CellId"
 
     
     // MARK: - UI
@@ -50,10 +49,20 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = "CPSC 599 - GROUP CHAT"
         collectionView?.backgroundColor = .white
-        collectionView?.register(ChatLogMessageCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(ChatLogMessageCell.self)
+        inputTextField.delegate = self
+        navigationItem.rightBarButtonItem = logoutBtn
+        collectionView?.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 60, right: 0)
+
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    private func setupUI() {
         view.addSubview(messageInputContainerView)
         
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: messageInputContainerView)
@@ -62,23 +71,6 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         bottomConstraint = messageInputContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         bottomConstraint?.isActive = true
         setupTextField()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillHide, object: nil)
-        collectionView?.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 60, right: 0)
-        navigationItem.rightBarButtonItem = logoutBtn
-        
-        inputTextField.delegate = self
-    }
-    
-    private func fetchMessages() {
-        Database.database().reference().child("messages").observe(.childAdded, with: { (snapshot) in
-            // parse the messages
-            let values = snapshot.value as! [String: Any]
-            if let message = Message(dict: values) {
-                self.appendMessage(message)
-            }
-        }, withCancel: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,12 +83,6 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
             fetchMessages()
         }
         scrollToTheEnd()
-    }
-    
-    @objc func showLoginScreen() {
-        let vc = LoginViewController()
-        let nv = UINavigationController(rootViewController: vc)
-        present(nv, animated: true, completion: nil)
     }
     
     private func setupTextField() {
@@ -114,8 +100,51 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         messageInputContainerView.addConstraintsWithFormat(format: "V:|[v0(0.5)]", views: topView)
     }
    
+    // MARK: - Event Handlers
+    
+    @objc func showLoginScreen() {
+        let vc = LoginViewController()
+        let nv = UINavigationController(rootViewController: vc)
+        present(nv, animated: true, completion: nil)
+    }
+    
+    @objc func handleKeyboard(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let kbFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
+            
+            let isKeyboardShowing = notification.name == .UIKeyboardWillShow
+            self.bottomConstraint?.constant = isKeyboardShowing ? -kbFrame.height : 0
+            
+            UIView.animate(withDuration: 0, delay: 0, options: [.curveEaseInOut], animations: {
+                self.view.layoutIfNeeded()
+            }, completion: { completed in
+                self.scrollToTheEnd()
+            })
+        }
+    }
+ 
+    // MARK: - Utitlity functions
+    
+    private func appendMessage(_ message: Message) {
+        messages.append(message)
+        let indexPath = IndexPath(item: messages.count - 1, section: 0)
+        collectionView?.insertItems(at: [indexPath])
+        collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    private func scrollToTheEnd() {
+        guard messages.count > 0 else { return }
+        let indexPath = IndexPath(item: messages.count - 1, section: 0)
+        collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+    }
+    
+}
 
-    // MARK: CollectionView Datasource and Delegates
+
+// MARK: UICollectionview
+
+
+extension ChatViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
@@ -146,13 +175,12 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         return cell
     }
     
-   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let estimatedCGSize = getSGSize(for: messages[indexPath.row])
         return CGSize(width: view.frame.width, height: estimatedCGSize
             .height + 20 + 20)
     }
-  
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         inputTextField.endEditing(true)
     }
@@ -164,22 +192,35 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         
         return NSString(string: messageBody).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18)], context: nil)
     }
+}
+
+
+// MARK: UITextFieldDelegate
+
+
+extension ChatViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        addMessage()
+        return true
+    }
+
+}
+
+
+// MARK: - Firebase
+
+extension ChatViewController {
     
-    // MARK: - Event Handlers
-    
-    @objc func handleKeyboard(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            let kbFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as! CGRect
-            
-            let isKeyboardShowing = notification.name == .UIKeyboardWillShow
-            self.bottomConstraint?.constant = isKeyboardShowing ? -kbFrame.height : 0
-            
-            UIView.animate(withDuration: 0, delay: 0, options: [.curveEaseInOut], animations: {
-                self.view.layoutIfNeeded()
-            }, completion: { completed in
-                self.scrollToTheEnd()
-            })
-        }
+    private func fetchMessages() {
+        Database.database().reference().child("messages").observe(.childAdded, with: { (snapshot) in
+            // parse the messages
+            let values = snapshot.value as! [String: Any]
+            if let message = Message(dict: values) {
+                self.appendMessage(message)
+            }
+        }, withCancel: nil)
     }
     
     @objc func addMessage() {
@@ -212,34 +253,11 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         }
     }
     
+    
+    
     private func isUserLoggedIn() -> Bool {
         return Auth.auth().currentUser != nil
     }
     
-    private func appendMessage(_ message: Message) {
-        messages.append(message)
-        let indexPath = IndexPath(item: messages.count - 1, section: 0)
-        collectionView?.insertItems(at: [indexPath])
-        collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-    }
-    
-    private func scrollToTheEnd() {
-        guard messages.count > 0 else { return }
-        let indexPath = IndexPath(item: messages.count - 1, section: 0)
-        collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-    }
-    
 }
-
-
-extension ChatViewController: UITextFieldDelegate {
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        addMessage()
-        return true
-    }
-
-}
-
 

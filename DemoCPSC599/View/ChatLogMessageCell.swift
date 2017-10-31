@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatLogMessageCell: BaseCell {
+final class ChatLogMessageCell: BaseCell, ReusableView {
     
     
     // MARK: - API

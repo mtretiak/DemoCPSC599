@@ -12,6 +12,7 @@
 		8D2685B91FA8ECCE003160C0 /* Shakeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685B81FA8ECCE003160C0 /* Shakeable.swift */; };
 		8D2685BB1FA8ED33003160C0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685BA1FA8ED33003160C0 /* RoundedButton.swift */; };
 		8D2685BD1FA8EE37003160C0 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685BC1FA8EE37003160C0 /* UIViewController.swift */; };
+		8D2685BF1FA907E6003160C0 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685BE1FA907E6003160C0 /* ReusableView.swift */; };
 		8DE05B731FA82F42000D2C4D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE05B721FA82F42000D2C4D /* UIColor.swift */; };
 		8DE05B751FA82F84000D2C4D /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE05B741FA82F84000D2C4D /* StyleSheet.swift */; };
 		8DE05B771FA83E96000D2C4D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE05B761FA83E96000D2C4D /* CustomTextField.swift */; };
@@ -57,6 +58,7 @@
 		8D2685B81FA8ECCE003160C0 /* Shakeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shakeable.swift; sourceTree = "<group>"; };
 		8D2685BA1FA8ED33003160C0 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		8D2685BC1FA8EE37003160C0 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		8D2685BE1FA907E6003160C0 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		8DE05B721FA82F42000D2C4D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8DE05B741FA82F84000D2C4D /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
 		8DE05B761FA83E96000D2C4D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				8DE120EC1FA7E367002CC4C4 /* JSONDecodable.swift */,
 				8D2685B81FA8ECCE003160C0 /* Shakeable.swift */,
+				8D2685BE1FA907E6003160C0 /* ReusableView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				8DE120F41FA7E80B002CC4C4 /* ChatViewController.swift in Sources */,
 				8DF9893A1FA8531D006AC4EA /* UICollectionView.swift in Sources */,
 				8DF989381FA84DCE006AC4EA /* SignUpViewController.swift in Sources */,
+				8D2685BF1FA907E6003160C0 /* ReusableView.swift in Sources */,
 				C1A9D5B41FA7D36500E8037D /* AppDelegate.swift in Sources */,
 				8DF9893E1FA8617D006AC4EA /* UIView.swift in Sources */,
 				8D2685BD1FA8EE37003160C0 /* UIViewController.swift in Sources */,
