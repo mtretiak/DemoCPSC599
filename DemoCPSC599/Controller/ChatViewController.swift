@@ -67,6 +67,8 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: .UIKeyboardWillHide, object: nil)
         collectionView?.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 60, right: 0)
         navigationItem.rightBarButtonItem = logoutBtn
+        
+        inputTextField.delegate = self
     }
     
     private func fetchMessages() {
@@ -183,11 +185,14 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
     @objc func addMessage() {
         guard let text = inputTextField.text else { return }
         guard text.count > 0 else { return }
-        guard let currentUser = Auth.auth().currentUser else { return }
+        guard let username = Auth.auth().currentUser?.displayName,
+            let email = Auth.auth().currentUser?.email else { return }
         
-        let message = Message(from: currentUser.email!, body: text, date: Date())
+        // create the message object
         
-        // FIREBAE CODE
+        let message = Message(from: email, username: username, body: text, date: Date())
+        
+        // Save it to firebase
         
         Database.database().reference().child("messages")
             .childByAutoId()
@@ -224,6 +229,17 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
     
+}
+
+
+extension ChatViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        addMessage()
+        return true
+    }
+
 }
 
 

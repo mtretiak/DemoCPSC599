@@ -160,6 +160,12 @@ final class SignUpViewController: UIViewController {
                 // successfully saved to the databse
                 print("Saved user successfully to the databse")
                 self.dismiss(animated: true, completion: nil)
+                
+                user.createProfileChangeRequest().displayName = username
+                let changeRequest = user.createProfileChangeRequest()
+                changeRequest.displayName = username
+                changeRequest.commitChanges()
+               
             })
         }
     }
