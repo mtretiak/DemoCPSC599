@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
         
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+ 
+        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        application.statusBarStyle = .lightContent
+        UINavigationBar.appearance().barTintColor = StyleSheet.defaultTheme.mainColor
+        UITabBar.appearance().tintColor = StyleSheet.defaultTheme.mainColor
+        
+        
+        
+        let layout = UICollectionViewFlowLayout()
+        let vc = ChatViewController(collectionViewLayout: layout)
+        window?.rootViewController = UINavigationController(rootViewController: vc)
+        FirebaseApp.configure()
+
         return true
     }
 
