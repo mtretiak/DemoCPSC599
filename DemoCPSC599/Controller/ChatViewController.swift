@@ -246,6 +246,8 @@ extension ChatViewController {
 //        } catch let logoutError {
 //            print(logoutError)
 //        }
+        
+        showLoginScreen()
     }
     
     
