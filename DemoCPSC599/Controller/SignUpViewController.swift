@@ -112,8 +112,11 @@ final class SignUpViewController: UIViewController {
     
     // MARK: - Event Handler methods
     
+    
+    // TODO: add firebase code
+
     @objc func signup() {
-//
+        
 //        guard let username = _usernameTextField.text else {
 //            _usernameTextField.shake()
 //            return
@@ -160,6 +163,8 @@ final class SignUpViewController: UIViewController {
 //                }
 //                // successfully saved to the databse
 //                print("Saved user successfully to the databse")
+//                self.chatController?.clearMessages()
+//                self.chatController?.setTitle()
 //                self.dismiss(animated: true, completion: nil)
 //
 //                user.createProfileChangeRequest().displayName = username
@@ -169,8 +174,6 @@ final class SignUpViewController: UIViewController {
 //
 //            })
 //        }
-        
-        dismiss(animated: true, completion: nil)
     }
     
     @objc func dismissKeyboard() {

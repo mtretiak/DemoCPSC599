@@ -117,6 +117,8 @@ final class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
+    // TODO: login
+
     @objc func login() {
         
 //        guard let email = _emailTextField.text else {
@@ -135,23 +137,26 @@ final class LoginViewController: UIViewController {
 //            _passwordTextField.shake()
 //            return
 //        }
-        
+//
         // FIREBASE CODE
         
 //        Auth.auth().signIn(withEmail: email, password: password) { (user: User?, error: Error?) in
+//            
 //
+//            
 //            if error != nil {
 //                // error loging in, notify user
 //                print(error!)
 //                self.showAlert(error!)
 //                return
 //            }
-//
+//            
 //            guard let _ = user else { return }
 //            self.dismiss(animated: true, completion: nil)
+//            
+//            self.chatController?.clearMessages()
+//            self.chatController?.setTitle()
 //        }
-        
-        dismiss(animated: true, completion: nil)
     }
  
     

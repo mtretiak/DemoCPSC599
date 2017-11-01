@@ -73,10 +73,20 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         setupTextField()
     }
     
+    
+    // TODO: check the current user
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        populateChatWithMessages()
+        
+//        if Auth.auth().currentUser == nil {
+//            // no current user, show the login screen
+//            perform(#selector(showLoginScreen), with: nil, afterDelay: 0.0)
+//        } else {
+//            fetchMessages()
+//        }
+        scrollToTheEnd()
     }
     
     private func setupTextField() {
@@ -138,8 +148,10 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         self.collectionView?.reloadData()
     }
     
+    // TODO: set the title
+    
     func setTitle() {
-        navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.displayName ?? "" )"
+        //navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.email ?? "" )"
     }
     
 }
@@ -154,6 +166,9 @@ extension ChatViewController {
         return messages.count
     }
     
+    
+    // TODO: check the message source
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: ChatLogMessageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
@@ -162,7 +177,8 @@ extension ChatViewController {
         
         let estimatedCGSize = getSGSize(for: message)
         
-        if isMessageFromCurrentUser(message) {
+        //if message.from == Auth.auth().currentUser?.email {
+        if true {
             //outgoing messages
             
             cell.textViewFrame = CGRect(x: view.frame.width - estimatedCGSize.width - 16 - 16 - 8, y: 0, width: estimatedCGSize.width + 16, height: estimatedCGSize.height + 20)
@@ -211,6 +227,7 @@ extension ChatViewController: UITextFieldDelegate {
 
 }
 
+// TODO: load data
 
 // MARK: - Firebase
 
@@ -229,12 +246,11 @@ extension ChatViewController {
     @objc func addMessage() {
 //        guard let text = inputTextField.text else { return }
 //        guard text.count > 0 else { return }
-//        guard let username = Auth.auth().currentUser?.displayName,
-//            let email = Auth.auth().currentUser?.email else { return }
+//        guard let email = Auth.auth().currentUser?.email else { return }
 //
 //        // create the message object
 //
-//        let message = Message(from: email, username: username, body: text, date: Date())
+//        let message = Message(from: email, username: "", body: text, date: Date())
 //
 //        // Save it to firebase
 //
@@ -242,10 +258,8 @@ extension ChatViewController {
 //            .childByAutoId()
 //            .setValue(message.json)
 //
-//        //clear the textField and hide the keyboard
+//        //clear the textField
 //        inputTextField.text = ""
-//        view.endEditing(true)
-        
     }
     
     @objc func logout() {
@@ -261,19 +275,10 @@ extension ChatViewController {
     }
     
     
-    func populateChatWithMessages() {
-//        if Auth.auth().currentUser == nil {
-//            perform(#selector(showLoginScreen), with: nil, afterDelay: 0.0)
-//        } else {
-//            fetchMessages()
-//            navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.displayName ?? "" )"
-//        }
-        scrollToTheEnd()
-    }
     
-    private func isMessageFromCurrentUser(_ message: Message) -> Bool {
-        //return message.from == Auth.auth().currentUser?.email ?? false
-        return false
+    private func isUserLoggedIn() -> Bool {
+        //return Auth.auth().currentUser != nil
+        return true
     }
     
 }
