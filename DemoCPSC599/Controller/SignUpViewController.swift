@@ -12,7 +12,8 @@ import UIKit
 
 final class SignUpViewController: UIViewController {
     
-    
+    var chatController: ChatViewController?
+
     // MARK: - UI
     
     private lazy var _usernameTextField: CustomTextField = {

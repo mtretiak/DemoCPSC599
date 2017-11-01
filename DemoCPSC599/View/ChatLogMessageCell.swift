@@ -33,7 +33,7 @@ final class ChatLogMessageCell: BaseCell, ReusableView {
     var message: Message? {
         didSet {
             _messageTextView.text = message?.body
-            _usernameLabel.text = message?.username
+            _usernameLabel.text = message?.from
         }
     }
     

@@ -99,6 +99,7 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
     @objc func showLoginScreen() {
         let vc = LoginViewController()
         let nv = UINavigationController(rootViewController: vc)
+        vc.chatController = self
         present(nv, animated: true, completion: nil)
     }
     
@@ -130,6 +131,15 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         guard messages.count > 0 else { return }
         let indexPath = IndexPath(item: messages.count - 1, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    func clearMessages() {
+        self.messages.removeAll()
+        self.collectionView?.reloadData()
+    }
+    
+    func setTitle() {
+        navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.displayName ?? "" )"
     }
     
 }
