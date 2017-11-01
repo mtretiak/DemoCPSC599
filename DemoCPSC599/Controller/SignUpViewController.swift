@@ -12,7 +12,8 @@ import FirebaseDatabase
 
 final class SignUpViewController: UIViewController {
     
-    
+    var chatController: ChatViewController?
+
     // MARK: - UI
     
     private lazy var _usernameTextField: CustomTextField = {
@@ -159,6 +160,8 @@ final class SignUpViewController: UIViewController {
                 }
                 // successfully saved to the databse
                 print("Saved user successfully to the databse")
+                self.chatController?.clearMessages()
+                self.chatController?.setTitle()
                 self.dismiss(animated: true, completion: nil)
                 
                 user.createProfileChangeRequest().displayName = username

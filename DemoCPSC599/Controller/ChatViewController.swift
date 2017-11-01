@@ -83,7 +83,6 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
             fetchMessages()
         }
         scrollToTheEnd()
-        navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.displayName ?? "" )"
     }
     
     private func setupTextField() {
@@ -106,6 +105,7 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
     @objc func showLoginScreen() {
         let vc = LoginViewController()
         let nv = UINavigationController(rootViewController: vc)
+        vc.chatController = self
         present(nv, animated: true, completion: nil)
     }
     
@@ -137,6 +137,15 @@ final class ChatViewController: UICollectionViewController, UICollectionViewDele
         guard messages.count > 0 else { return }
         let indexPath = IndexPath(item: messages.count - 1, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+    }
+    
+    func clearMessages() {
+        self.messages.removeAll()
+        self.collectionView?.reloadData()
+    }
+    
+    func setTitle() {
+        navigationItem.title = "GROUP CHAT - \(Auth.auth().currentUser?.displayName ?? "" )"
     }
     
 }
@@ -226,12 +235,11 @@ extension ChatViewController {
     @objc func addMessage() {
         guard let text = inputTextField.text else { return }
         guard text.count > 0 else { return }
-        guard let username = Auth.auth().currentUser?.displayName,
-            let email = Auth.auth().currentUser?.email else { return }
+        guard let email = Auth.auth().currentUser?.email else { return }
         
         // create the message object
         
-        let message = Message(from: email, username: username, body: text, date: Date())
+        let message = Message(from: email, username: "", body: text, date: Date())
         
         // Save it to firebase
         

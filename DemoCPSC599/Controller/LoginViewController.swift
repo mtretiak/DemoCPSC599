@@ -14,6 +14,8 @@ final class LoginViewController: UIViewController {
     
     // MARK: - UI
     
+    var chatController: ChatViewController?
+    
     private lazy var _emailTextField: CustomTextField = {
         let textField = CustomTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -83,6 +85,8 @@ final class LoginViewController: UIViewController {
         view.backgroundColor = StyleSheet.defaultTheme.contentBackgroundColor
 
         setupUI()
+        
+        
     }
     
     private func setupUI() {
@@ -136,6 +140,8 @@ final class LoginViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: email, password: password) { (user: User?, error: Error?) in
             
+
+            
             if error != nil {
                 // error loging in, notify user
                 print(error!)
@@ -145,12 +151,16 @@ final class LoginViewController: UIViewController {
             
             guard let _ = user else { return }
             self.dismiss(animated: true, completion: nil)
+            
+            self.chatController?.clearMessages()
+            self.chatController?.setTitle()
         }
     }
  
     
     @objc func openSignUpPage() {
         let vc = SignUpViewController()
+        vc.chatController = chatController
         show(vc, sender: nil)
     }
    
