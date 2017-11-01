@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8D2685B41FA86B83003160C0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D2685B31FA86B83003160C0 /* GoogleService-Info.plist */; };
+		8D2685B41FA86B83003160C0 /* GoogleService-Info_2_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D2685B31FA86B83003160C0 /* GoogleService-Info_2_1.plist */; };
 		8D2685B71FA8EBA1003160C0 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685B61FA8EBA1003160C0 /* EmailValidator.swift */; };
 		8D2685B91FA8ECCE003160C0 /* Shakeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685B81FA8ECCE003160C0 /* Shakeable.swift */; };
 		8D2685BB1FA8ED33003160C0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685BA1FA8ED33003160C0 /* RoundedButton.swift */; };
@@ -33,7 +33,7 @@
 		C1A9D5BB1FA7D36500E8037D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A9D5BA1FA7D36500E8037D /* Assets.xcassets */; };
 		C1A9D5BE1FA7D36500E8037D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A9D5BC1FA7D36500E8037D /* LaunchScreen.storyboard */; };
 		C1A9D5C91FA7D36500E8037D /* DemoCPSC599Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A9D5C81FA7D36500E8037D /* DemoCPSC599Tests.swift */; };
-		C1A9D5D41FA7D40600E8037D /* GoogleService-Info_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1A9D5D31FA7D40600E8037D /* GoogleService-Info_1.plist */; };
+		C1A9D5D41FA7D40600E8037D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1A9D5D31FA7D40600E8037D /* GoogleService-Info.plist */; };
 		E315F21DF54D8CF4B9A6DC1F /* Pods_DemoCPSC599.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38BD97D0D440C8C4D22FC2A /* Pods_DemoCPSC599.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +53,7 @@
 		7002F5F6BE89BED8B98CCE4F /* Pods-DemoCPSC599Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoCPSC599Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoCPSC599Tests/Pods-DemoCPSC599Tests.release.xcconfig"; sourceTree = "<group>"; };
 		746D3D4DA9988FBF1A771663 /* Pods-DemoCPSC599Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoCPSC599Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoCPSC599Tests/Pods-DemoCPSC599Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8D2685B21FA86B28003160C0 /* GoogleService-Info_2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_2.plist"; sourceTree = "<group>"; };
-		8D2685B31FA86B83003160C0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D2685B31FA86B83003160C0 /* GoogleService-Info_2_1.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_2_1.plist"; sourceTree = "<group>"; };
 		8D2685B61FA8EBA1003160C0 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		8D2685B81FA8ECCE003160C0 /* Shakeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shakeable.swift; sourceTree = "<group>"; };
 		8D2685BA1FA8ED33003160C0 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		C1A9D5C41FA7D36500E8037D /* DemoCPSC599Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoCPSC599Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A9D5C81FA7D36500E8037D /* DemoCPSC599Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCPSC599Tests.swift; sourceTree = "<group>"; };
 		C1A9D5CA1FA7D36500E8037D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1A9D5D31FA7D40600E8037D /* GoogleService-Info_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_1.plist"; sourceTree = "<group>"; };
+		C1A9D5D31FA7D40600E8037D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF9193A68F207077B456FA60 /* Pods-DemoCPSC599.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoCPSC599.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoCPSC599/Pods-DemoCPSC599.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,10 +132,10 @@
 			children = (
 				8D2685B21FA86B28003160C0 /* GoogleService-Info_2.plist */,
 				C1A9D5B31FA7D36500E8037D /* AppDelegate.swift */,
-				C1A9D5D31FA7D40600E8037D /* GoogleService-Info_1.plist */,
+				C1A9D5D31FA7D40600E8037D /* GoogleService-Info.plist */,
 				8DF989361FA848ED006AC4EA /* username.png */,
 				C1A9D5BA1FA7D36500E8037D /* Assets.xcassets */,
-				8D2685B31FA86B83003160C0 /* GoogleService-Info.plist */,
+				8D2685B31FA86B83003160C0 /* GoogleService-Info_2_1.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -338,8 +338,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1A9D5BE1FA7D36500E8037D /* LaunchScreen.storyboard in Resources */,
-				C1A9D5D41FA7D40600E8037D /* GoogleService-Info_1.plist in Resources */,
-				8D2685B41FA86B83003160C0 /* GoogleService-Info.plist in Resources */,
+				C1A9D5D41FA7D40600E8037D /* GoogleService-Info.plist in Resources */,
+				8D2685B41FA86B83003160C0 /* GoogleService-Info_2_1.plist in Resources */,
 				C1A9D5BB1FA7D36500E8037D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
