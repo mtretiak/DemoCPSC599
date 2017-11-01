@@ -10,6 +10,7 @@ import Foundation
 
 struct Message {
     let from: String // email of the message owner
+    let username: String
     let body: String
     let date: Date
 }
@@ -18,10 +19,12 @@ extension Message {
     
     init?(dict: [String: Any]) {
         guard let from = dict.string(key: "from"),
+            let username = dict.string(key: "username"),
             let body = dict.string(key: "body"),
             let dateInterval = dict.double(key: "date") else { return nil }
         
         self.from = from
+        self.username = username
         self.body = body
         self.date = Date(timeIntervalSince1970: dateInterval)
     }
@@ -30,6 +33,7 @@ extension Message {
         return [
             "from": from,
             "body": body,
+            "username": username,
             "date": date.timeIntervalSince1970
         ]
     }
@@ -42,6 +46,7 @@ extension Message {
         get {
             return [
                
+                /*
                 Message(from: DemoUser.userOne.username, body: "Hello guys", date: Date(timeInterval: 10, since: Date())),
                 Message(from: DemoUser.userOne.username, body: "I was wondering if you will be avialable to meet this weekend", date: Date(timeInterval: 20, since: Date())),
                 
@@ -58,7 +63,7 @@ extension Message {
                 Message(from: DemoUser.userTwo.username, body: "Ok", date: Date(timeInterval: 350, since: Date())),
             
                 Message(from: DemoUser.userThree.username, body: "See u there", date: Date(timeInterval: 400, since: Date())),
-               
+               */
             ]
         }
     }

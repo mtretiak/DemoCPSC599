@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatLogMessageCell: BaseCell {
+final class ChatLogMessageCell: BaseCell, ReusableView {
     
     
     // MARK: - API
@@ -33,7 +33,7 @@ class ChatLogMessageCell: BaseCell {
     var message: Message? {
         didSet {
             _messageTextView.text = message?.body
-            _usernameLabel.text = message?.from
+            _usernameLabel.text = message?.username
         }
     }
     

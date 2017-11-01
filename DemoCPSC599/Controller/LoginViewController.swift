@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseAuth
+//import FirebaseAuth
 
 final class LoginViewController: UIViewController {
     
@@ -115,38 +115,41 @@ final class LoginViewController: UIViewController {
     
     @objc func login() {
         
-        guard let email = _emailTextField.text else {
-            _emailTextField.shake()
-            return
-        }
-        guard EmailValidator.isValid(email: email) else {
-            _emailTextField.shake()
-            return
-        }
-        guard let password = _passwordTextField.text  else {
-            _passwordTextField.shake()
-            return
-        }
-        guard password.count > 6 else {
-            _passwordTextField.shake()
-            return
-        }
+//        guard let email = _emailTextField.text else {
+//            _emailTextField.shake()
+//            return
+//        }
+//        guard EmailValidator.isValid(email: email) else {
+//            _emailTextField.shake()
+//            return
+//        }
+//        guard let password = _passwordTextField.text  else {
+//            _passwordTextField.shake()
+//            return
+//        }
+//        guard password.count > 6 else {
+//            _passwordTextField.shake()
+//            return
+//        }
         
         // FIREBASE CODE
         
-        Auth.auth().signIn(withEmail: email, password: password) { (user: User?, error: Error?) in
-            
-            if error != nil {
-                // error loging in, notify user
-                print(error!)
-                self.showAlert(error!)
-                return
-            }
-            
-            guard let _ = user else { return }
-            self.dismiss(animated: true, completion: nil)
-        }
+//        Auth.auth().signIn(withEmail: email, password: password) { (user: User?, error: Error?) in
+//
+//            if error != nil {
+//                // error loging in, notify user
+//                print(error!)
+//                self.showAlert(error!)
+//                return
+//            }
+//
+//            guard let _ = user else { return }
+//            self.dismiss(animated: true, completion: nil)
+//        }
+        
+        dismiss(animated: true, completion: nil)
     }
+ 
     
     @objc func openSignUpPage() {
         let vc = SignUpViewController()

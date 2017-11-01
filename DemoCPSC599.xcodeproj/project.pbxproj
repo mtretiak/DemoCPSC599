@@ -11,6 +11,7 @@
 		8D2685B91FA8ECCE003160C0 /* Shakeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685B81FA8ECCE003160C0 /* Shakeable.swift */; };
 		8D2685BB1FA8ED33003160C0 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685BA1FA8ED33003160C0 /* RoundedButton.swift */; };
 		8D2685BD1FA8EE37003160C0 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685BC1FA8EE37003160C0 /* UIViewController.swift */; };
+		8D2685BF1FA907E6003160C0 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2685BE1FA907E6003160C0 /* ReusableView.swift */; };
 		8DE05B731FA82F42000D2C4D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE05B721FA82F42000D2C4D /* UIColor.swift */; };
 		8DE05B751FA82F84000D2C4D /* StyleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE05B741FA82F84000D2C4D /* StyleSheet.swift */; };
 		8DE05B771FA83E96000D2C4D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE05B761FA83E96000D2C4D /* CustomTextField.swift */; };
@@ -31,7 +32,7 @@
 		C1A9D5BB1FA7D36500E8037D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A9D5BA1FA7D36500E8037D /* Assets.xcassets */; };
 		C1A9D5BE1FA7D36500E8037D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A9D5BC1FA7D36500E8037D /* LaunchScreen.storyboard */; };
 		C1A9D5C91FA7D36500E8037D /* DemoCPSC599Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A9D5C81FA7D36500E8037D /* DemoCPSC599Tests.swift */; };
-		C1A9D5D41FA7D40600E8037D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1A9D5D31FA7D40600E8037D /* GoogleService-Info.plist */; };
+		C1A9D5D41FA7D40600E8037D /* GoogleService-Info_1.plist in Resources */ = {isa = PBXBuildFile; fileRef = C1A9D5D31FA7D40600E8037D /* GoogleService-Info_1.plist */; };
 		E315F21DF54D8CF4B9A6DC1F /* Pods_DemoCPSC599.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A38BD97D0D440C8C4D22FC2A /* Pods_DemoCPSC599.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		8D2685B81FA8ECCE003160C0 /* Shakeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shakeable.swift; sourceTree = "<group>"; };
 		8D2685BA1FA8ED33003160C0 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		8D2685BC1FA8EE37003160C0 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		8D2685BE1FA907E6003160C0 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		8DE05B721FA82F42000D2C4D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		8DE05B741FA82F84000D2C4D /* StyleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSheet.swift; sourceTree = "<group>"; };
 		8DE05B761FA83E96000D2C4D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -79,7 +81,7 @@
 		C1A9D5C41FA7D36500E8037D /* DemoCPSC599Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoCPSC599Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A9D5C81FA7D36500E8037D /* DemoCPSC599Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCPSC599Tests.swift; sourceTree = "<group>"; };
 		C1A9D5CA1FA7D36500E8037D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1A9D5D31FA7D40600E8037D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C1A9D5D31FA7D40600E8037D /* GoogleService-Info_1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info_1.plist"; sourceTree = "<group>"; };
 		CF9193A68F207077B456FA60 /* Pods-DemoCPSC599.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoCPSC599.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoCPSC599/Pods-DemoCPSC599.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				C1A9D5B31FA7D36500E8037D /* AppDelegate.swift */,
-				C1A9D5D31FA7D40600E8037D /* GoogleService-Info.plist */,
+				C1A9D5D31FA7D40600E8037D /* GoogleService-Info_1.plist */,
 				8DF989361FA848ED006AC4EA /* username.png */,
 				C1A9D5BA1FA7D36500E8037D /* Assets.xcassets */,
 			);
@@ -170,6 +172,7 @@
 			children = (
 				8DE120EC1FA7E367002CC4C4 /* JSONDecodable.swift */,
 				8D2685B81FA8ECCE003160C0 /* Shakeable.swift */,
+				8D2685BE1FA907E6003160C0 /* ReusableView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				8DE120F41FA7E80B002CC4C4 /* ChatViewController.swift in Sources */,
 				8DF9893A1FA8531D006AC4EA /* UICollectionView.swift in Sources */,
 				8DF989381FA84DCE006AC4EA /* SignUpViewController.swift in Sources */,
+				8D2685BF1FA907E6003160C0 /* ReusableView.swift in Sources */,
 				C1A9D5B41FA7D36500E8037D /* AppDelegate.swift in Sources */,
 				8DF9893E1FA8617D006AC4EA /* UIView.swift in Sources */,
 				8D2685BD1FA8EE37003160C0 /* UIViewController.swift in Sources */,
